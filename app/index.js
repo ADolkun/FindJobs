@@ -32,7 +32,7 @@ const Home = () => {
       />
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={{ flex: 1, padding: SIZES.medium }}>
-          <Welc ome />
+          <Welcome />
 
           <Popularjobs />
           <Nearbyjobs />
