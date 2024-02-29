@@ -5,7 +5,6 @@ import styles from "./popularjobcard.style";
 
 const PopularJobCard = ({ item, selectedJob, handleCardPress }) => {
   return (
-    // <Text>job</Text>
     <Pressable
       style={styles.container(selectedJob, item)}
       onPress={() => handleCardPress(item)}
