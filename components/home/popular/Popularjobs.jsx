@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import {
   View,
   Text,
-  TouchableOpacity,
+  Pressable,
   FlatList,
   ActivityIndicator,
 } from "react-native";
@@ -20,15 +20,19 @@ const Popularjobs = () => {
     num_pages: 1,
   });
 
-  console.log(data);
-  
+  const [selectedJob, setSelectedJob] = useState();
+  const handleCardPress = (item) => {
+    router.push(`/job-details/${item.job_id}`);
+    setSelectedJob(item.job_id);
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.headerTitle}>Popular jobs</Text>
-        <TouchableOpacity>
+        <Pressable>
           <Text style={styles.headerBtn}>Show All</Text>
-        </TouchableOpacity>
+        </Pressable>
       </View>
       <View style={styles.cardsContainer}>
         {isLoading ? (
@@ -37,9 +41,15 @@ const Popularjobs = () => {
           <Text>Something went wrong</Text>
         ) : (
           <FlatList
-            data={[1, 2, 3, 4, 5, 6, 7, 8, 9]}
-            renderItem={({ item }) => <PopularjobCard item={item} />}
-            keyExtractor={(item) => item?.job_id}
+            data={data}
+            renderItem={({ item }) => (
+              <PopularjobCard
+                item={item}
+                selectedJob={selectedJob}
+                handleCardPress={handleCardPress}
+              />
+            )}
+            keyExtractor={(item) => item.job_id}
             contentContainerStyle={{ columnGap: SIZES.medium }}
             horizontal
           />
