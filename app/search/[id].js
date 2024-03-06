@@ -48,6 +48,7 @@ const JobSearch = () => {
       setSearchResult(response.data.data);
     } catch (error) {
       setSearchError(error);
+      alert("There is an error: " + error);
       console.log(error);
     } finally {
       setSearchLoader(false);
